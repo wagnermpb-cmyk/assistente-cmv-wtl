@@ -28,7 +28,7 @@ Responda direto ao ponto, linguagem de dono pra dono. Use os dados do restaurant
 
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) {
-    return res.status(500).json({ error: "Chave de API não configurada." });
+    return res.status(500).json({ reply: "DEBUG: ANTHROPIC_API_KEY não encontrada." });
   }
 
   try {
@@ -52,14 +52,16 @@ Responda direto ao ponto, linguagem de dono pra dono. Use os dados do restaurant
       }),
     });
 
+    const responseText = await response.text();
+
     if (!response.ok) {
-      return res.status(200).json({ reply: "Erro ao gerar resposta." });
+      return res.status(200).json({ reply: "DEBUG_ERROR status=" + response.status + " body=" + responseText });
     }
 
-    const data = await response.json();
+    const data = JSON.parse(responseText);
     const reply = data.content?.[0]?.text || "Erro ao gerar resposta.";
     return res.status(200).json({ reply });
   } catch (error) {
-    return res.status(200).json({ reply: "Erro ao gerar resposta." });
+    return res.status(200).json({ reply: "DEBUG_CATCH: " + error.message });
   }
 }
