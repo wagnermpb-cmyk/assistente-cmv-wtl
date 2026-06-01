@@ -45,7 +45,7 @@ Responda direto ao ponto, linguagem de dono pra dono. Use os dados do restaurant
         "anthropic-version": "2023-06-01",
       },
       body: JSON.stringify({
-        model: "claude-3-sonnet-20240229",
+        model: "claude-2.1",
         max_tokens: 1024,
         system: SYSTEM_PROMPT,
         messages: apiMessages,
