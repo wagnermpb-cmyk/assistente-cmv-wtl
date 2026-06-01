@@ -57,11 +57,10 @@ Responda direto ao ponto, linguagem de dono pra dono. Use os dados do restaurant
         "anthropic-version": "2023-06-01",
       },
       body: JSON.stringify({
-        model: "claude-3-5-sonnet-20241022",
         max_tokens: 1024,
         system: SYSTEM_PROMPT,
         messages: apiMessages,
-      }),
+              model: "claude-3-haiku-20240307",
     });
 
     const responseText = await response.text();
